@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
+    <title>Promise</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 10px;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+        .input {
+            width: 100%;
+            max-width: 400px;
+            height: 40px;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+        .btn {
+            width: 80px;
+            height: 40px;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .img {
+            width: 100%;
+            height: 300px;
+        }
+        .img-search {
+            max-width: 1340px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            margin: 0 auto;
+            gap: 30px;
+        }
+        #result-block-img {
+            text-align: center;
+        }
+
+        @media (max-width: 1007px) {
+            .img {
+            height: 200px;
+            }
+        }
+        @media (max-width: 724px) {
+            .img-search {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 435px) {
+            .img {
+            height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="main">
+        <div class="container">
+            <input class="input" type="text" placeholder="Введите что-то" data-input-text>
+            <input class="btn" type="button" value="Поиск" data-btn-search>
+        </div>
+        <div id="result-block-img">
+        </div>
+    </main>
+</body>
+</html>
