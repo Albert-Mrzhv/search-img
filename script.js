@@ -5,9 +5,7 @@ const result = document.querySelector('#result-block-img');
 const searchCars = ['Машины', 'машины', 'Машина', 'машина', 'Тачка', 'тачка', 'Авто', 'авто', 'Автомобиль', 'автомобиль', 'Тачки', 'тачки', 'Автомобили', 'автомобили'];
 const searcHome = ['Дома', 'дома', 'Хата', 'хата', 'Дом', 'дом', 'Хаты', 'хаты'];
 
-const arrey = []
-
-searchBtn.addEventListener('click', () => {
+const handleInputAndButtonClick = () => {
     if (input.value === '') {
         return
     }
@@ -46,4 +44,14 @@ searchBtn.addEventListener('click', () => {
         }, 2000)
     }
     input.value = ''
+}
+
+searchBtn.addEventListener('click', () => {
+    handleInputAndButtonClick();
+})
+
+input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        handleInputAndButtonClick();
+    }
 })
