@@ -3,7 +3,7 @@ const searchBtn = document.querySelector('[data-btn-search]');
 const result = document.querySelector('#result-block-img');
 
 const searchCars = ['Машины', 'машины', 'Машина', 'машина', 'Тачка', 'тачка', 'Авто', 'авто', 'Автомобиль', 'автомобиль', 'Тачки', 'тачки', 'Автомобили', 'автомобили'];
-const searcHome = ['Дома', 'дома', 'Хата', 'хата', 'Дом', 'дом', 'Хаты', 'хаты'];
+const searcHome = ['Дома', 'дома', 'Дом', 'дом'];
 
 const handleInputAndButtonClick = () => {
     if (input.value === '') {
@@ -22,6 +22,7 @@ const handleInputAndButtonClick = () => {
                 <img class="img" src="./img-cars/kAAAAgN4A-A-960.jpg" alt="">
             </div>
             `
+            clickImages();
         }, 2000);
     } else if (searcHome.includes(input.value)) {
         result.innerHTML = 'Loading...'
@@ -36,6 +37,7 @@ const handleInputAndButtonClick = () => {
                 <img class="img" src="./img-home/XXL_height.webp" alt="">
             </div>
             `
+            clickImages();
         }, 2000);
     } else {
         result.innerHTML = 'Loading...'
@@ -55,3 +57,33 @@ input.addEventListener('keydown', (e) => {
         handleInputAndButtonClick();
     }
 })
+
+const clickImages = () => {
+    const imag = result.querySelectorAll('.img');
+    imag.forEach((img) => {
+        img.addEventListener('click', () => {
+            const main = document.querySelector('.main');
+            main.style.pointerEvents = 'none';
+
+            const containerImgBtn = document.createElement('div');
+            containerImgBtn.classList.add('container-img-btn');
+
+            const imgElement = document.createElement('img');
+            imgElement.src = img.src;
+            imgElement.classList.add('img-element');
+
+            const removeImg = document.createElement('input');
+            removeImg.type = 'button';
+            removeImg.value = 'X';
+            removeImg.classList.add('remove-img');
+
+            removeImg.addEventListener('click', () => {
+                containerImgBtn.remove();
+                main.style.pointerEvents = 'auto';
+            })
+
+            containerImgBtn.append(imgElement, removeImg);
+            document.body.append(containerImgBtn);
+        })
+    })
+}
