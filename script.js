@@ -58,9 +58,10 @@ input.addEventListener('keydown', (e) => {
     }
 })
 
+
 const clickImages = () => {
     const imag = result.querySelectorAll('.img');
-    imag.forEach((img) => {
+    imag.forEach((img, index) => {
         img.addEventListener('click', () => {
             const main = document.querySelector('.main');
             main.style.pointerEvents = 'none';
@@ -70,6 +71,7 @@ const clickImages = () => {
 
             const imgElement = document.createElement('img');
             imgElement.src = img.src;
+            imgElement.dataset.index = index
             imgElement.classList.add('img-element');
 
             const removeImg = document.createElement('input');
@@ -82,7 +84,34 @@ const clickImages = () => {
                 main.style.pointerEvents = 'auto';
             })
 
-            containerImgBtn.append(imgElement, removeImg);
+            const buttonLeft = document.createElement('div');
+            buttonLeft.textContent = 'ᐸ';
+            buttonLeft.classList.add('btn-left', 'btn-arrow');
+
+            const buttonRight = document.createElement('div');
+            buttonRight.textContent = 'ᐳ';
+            buttonRight.classList.add('btn-right', 'btn-arrow');
+
+
+            buttonRight.addEventListener('click', () => {
+                if (index < imag.length - 1) {
+                    imgElement.src = imag[++index].src
+                    buttonLeft.style.opacity = '1'
+                } else if (imag.length - 1) {
+                    buttonRight.style.opacity = '0.3'
+                }
+            })
+
+            buttonLeft.addEventListener('click', () => {
+                if (index > 0) {
+                    imgElement.src = imag[--index].src
+                    buttonRight.style.opacity = '1'
+                } else {
+                    buttonLeft.style.opacity = '0.3'
+                }
+            })
+
+            containerImgBtn.append(buttonLeft, imgElement, removeImg, buttonRight);
             document.body.append(containerImgBtn);
         })
     })
